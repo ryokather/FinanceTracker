@@ -64,6 +64,7 @@ Additionally, if you click on the headers of the table you are able to sort by t
 ## Built With
 
 -   PyQt5 - A Python version of Qt designed as a cross-platform GUI framework
+-   QtCreator - A cross-platform application that uses the Qt API and simplifies the design process of ui
 
 ## Project Status
 
