@@ -22,7 +22,7 @@ class UIFunctions(MainWindow):
             self.animation.setEndValue(newWidth)
             self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animation.start()
-
+    
     # Updates the dashboard spending widget specified by totalIncome and percentage. Also displays the correct trend based on the percentage
     def updateSpending(self, totalSpending: float=0.00, percentage: float=0.0):
         string1 = self.formatAmount(totalSpending)
@@ -132,10 +132,21 @@ class UIFunctions(MainWindow):
                 
         return accounts
 
-    # Clears entire table
-    def clearTable(self):
-        self.ui.transactionsTable.clearContents()
-        self.ui.transactionsTable.setRowCount(13)
+    def analysisPage_updateSpendingInMonth(self, amount: float):
+        formatted = self.formatAmount(amount)
+        self.ui.label_analysisPg_spendingPerMonth.setText(formatted)
+
+    def analysisPage_updateIncomeInMonth(self, amount: float):
+        formatted = self.formatAmount(amount)
+        self.ui.label_analysisPg_incomePerMonth.setText(formatted)
+
+    def analysisPage_updateAvgSpending(self, avg: float):
+        formatted = self.formatAmount(avg)
+        self.ui.label_analysisPg_avgSpendingPerMonth.setText(formatted)
+
+    def analysisPage_updateAvgIncome(self, avg: float):
+        formatted = self.formatAmount(avg)
+        self.ui.label_analysisPg_avgIncomePerMonth.setText(formatted)
 
     # Clears all account combo boxes
     def clearAllAccountComboBoxes(self):
@@ -147,6 +158,22 @@ class UIFunctions(MainWindow):
         self.ui.comboBox_settings_acc2.clear()
 
         UIFunctions.setupAccountComboBoxes(self)
+
+    # Sets up the default items in the account combo boxes
+    def setupAccountComboBoxes(self):
+        self.ui.comboBox_add_accSelection.addItem("Select Account")
+        self.ui.comboBox_filter_accSelection.addItem("All Accounts")
+        self.ui.comboBox_editAcct.addItem("Select an account")
+        self.ui.comboBox_deleteAcct.addItem("Select an account")
+        self.ui.comboBox_settings_acc1.addItem("Select Account")
+        self.ui.comboBox_settings_acc2.addItem("Select Account")
+    
+    ### TRANSACTIONS TABLE UI ###
+
+    # Clears entire table
+    def clearTable(self):
+        self.ui.transactionsTable.clearContents()
+        self.ui.transactionsTable.setRowCount(13)
 
     # Adds 13 empty rows into the table so empty rows are shown upon program starting
     def setupTable(self):
@@ -165,15 +192,6 @@ class UIFunctions(MainWindow):
         self.ui.transactionsTable.setColumnWidth(2, width * 0.22)
         self.ui.transactionsTable.setColumnWidth(3, width * 0.24)
         self.ui.transactionsTable.setColumnWidth(4, width * 0.12)
-
-    # Sets up the default items in the account combo boxes
-    def setupAccountComboBoxes(self):
-        self.ui.comboBox_add_accSelection.addItem("Select Account")
-        self.ui.comboBox_filter_accSelection.addItem("All Accounts")
-        self.ui.comboBox_editAcct.addItem("Select an account")
-        self.ui.comboBox_deleteAcct.addItem("Select an account")
-        self.ui.comboBox_settings_acc1.addItem("Select Account")
-        self.ui.comboBox_settings_acc2.addItem("Select Account")
 
     # set min and max of each date edit box when program starts
     def setDateEdits(self, dateRange: tuple):
@@ -203,6 +221,8 @@ class UIFunctions(MainWindow):
         self.ui.lineEdit_enterName.setText(name)
         self.ui.label_welcomeMessage.setText(" Hello, " + name + "!")
 
+    ### GETTER FUNCTIONS FROM UI ###
+
     def transactionsPage_getAccount_add(self) -> str:
         return self.ui.comboBox_add_accSelection.currentText()
     
@@ -227,6 +247,18 @@ class UIFunctions(MainWindow):
     def getToDate_filter(self) -> QDate:
         return self.ui.dateEdit_filter_toDate.date()
 
+    def analysisPage_spending_getMonth(self) -> str:
+        return self.ui.comboBox_analysis_spendingPerMonth.currentText()
+
+    def analysisPage_income_getMonth(self) -> str:
+        return self.ui.comboBox_analysis_incomePerMonth.currentText()
+
+    def analysisPage_spending_getRange(self) -> int:
+        return self.ui.comboBox_analysis_spendingRange.currentIndex()
+    
+    def analysisPage_income_getRange(self) -> int:
+        return self.ui.comboBox_analysis_incomeRange.currentIndex()
+        
     def settingsPage_getAcc1(self) -> str:
         return self.ui.comboBox_settings_acc1.currentText()
     

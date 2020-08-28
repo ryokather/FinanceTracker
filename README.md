@@ -3,7 +3,7 @@
 Finance Tracker is a GUI-based desktop application built fully in Python. This application serves as a personal finance management tool that is
 able to display, filter, and analyze one's spending and income habits. 
 
-![](demos/appOverview.gif)
+![](demos/demo.gif)
 
 ## Prerequisites
 
@@ -34,9 +34,7 @@ You will then need to setup the database that is used with the application. Exec
 
 Once the virtual environment has been activated, run `app.py` to start up Finance Tracker.
 
-It is useful to categorize your transactions based on which account it is coming from. Since not all statements detail which account the transactions
-represent you are able to add an account in the **Accounts** tab. Now, when you go to add some transactions in the **Transactions** tab you are able
-to select the account from the drop down menu.
+As not all bank statements provide the account that the transactions are coming from, it is useful to manually add this to see difference in spending/income per account. To manually label an account to a specific set of transactions, head over to the **Accounts** tab. Now, when you go to add transaction data in the **Transactions** tab you are now able to select which account the transactions are coming from from the drop down menu.
 
 ![](demos/demoAddAcc.gif)
 
@@ -61,15 +59,16 @@ Additionally, if you click on the headers of the table you are able to sort by t
 
 ![](demos/demoFilter.gif)
 
+Viewing the **Analysis** tab will provide useful insight into one's spending and income trends.
+
+![](demos/demoAnalysis.gif)
+
 ## Built With
 
 -   PyQt5 - A Python version of Qt designed as a cross-platform GUI framework
 -   QtCreator - A cross-platform application that uses the Qt API and simplifies the design process of ui
 
 ## Project Status
-
--   Analysis page that will analyze one's spending and income habits is currently being worked on. Graphs detailing one's spending
-    per month and income per month will be displayed.
 
 -   Currently, the dashboard is unable to determine the current balance of each account as the application requires any row detailing excess information 
     such as running, starting, or ending balance to be removed. Improvements will be made to improve file reading. For now please make sure that csv files
@@ -81,4 +80,9 @@ Additionally, if you click on the headers of the table you are able to sort by t
     files with a wider range of columns.
 
 -   Category recognition of transactions is planned for the future.
+
+## Issues
+
+-   Credit card payments are being counted as spending and the equivalent payment on a credit card statement is being counted as spending. This flaws
+    the calculation of income and essentially double counts one's spendings.
 

@@ -13,7 +13,7 @@ import db
 
 class MainWindow(QMainWindow):
     MAP_TABLE_TO_SORT = {0: "Date", 1: "Merchant", 2: "Account", 3: "Category", 4: "Amount"}
-
+    INDEX_TO_MONTHRANGE = {0: 3, 1: 6, 2: 12}
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_FinanceApp()
@@ -95,8 +95,48 @@ class MainWindow(QMainWindow):
         self.ui.comboBox_filter_categorySelection.currentTextChanged.connect(self.filterDataFrame)
         self.ui.dateEdit_filter_fromDate.editingFinished.connect(self.filterDataFrame)
         self.ui.dateEdit_filter_toDate.editingFinished.connect(self.filterDataFrame)
-
+        
         ### END ————— TRANSACTIONS PAGE ### 
+
+        ### START ——— ANALYSIS PAGE ###
+
+        def analysisPage_spending_monthChosen():
+            month = UIFunctions.analysisPage_spending_getMonth(self)
+            if month == "Select Month":
+                UIFunctions.analysisPage_updateSpendingInMonth(self, 0)
+            else:
+                amount = AnalysisFunctions.getSpendingInMonth(self, month)
+                UIFunctions.analysisPage_updateSpendingInMonth(self, amount)
+
+        def analysisPage_income_monthChosen():
+            month = UIFunctions.analysisPage_income_getMonth(self)
+            if month == "Select Month":
+                UIFunctions.analysisPage_updateIncomeInMonth(self, 0)
+            else:
+                amount = AnalysisFunctions.getIncomeInMonth(self, month)
+                UIFunctions.analysisPage_updateIncomeInMonth(self, amount)
+        
+        self.ui.comboBox_analysis_incomePerMonth.currentTextChanged.connect(analysisPage_income_monthChosen)
+        self.ui.comboBox_analysis_spendingPerMonth.currentTextChanged.connect(analysisPage_spending_monthChosen)
+        
+        # set combo boxes to 6 months
+        self.ui.comboBox_analysis_incomeRange.setCurrentIndex(1)
+        self.ui.comboBox_analysis_spendingRange.setCurrentIndex(1)
+
+        def spendingRangeChanged():
+            index = UIFunctions.analysisPage_spending_getRange(self)
+            AnalysisFunctions.updateSpendingTab(self, self.INDEX_TO_MONTHRANGE[index])
+
+        self.ui.comboBox_analysis_spendingRange.currentTextChanged.connect(spendingRangeChanged)
+
+        def incomeRangeChanged():
+            index = UIFunctions.analysisPage_income_getRange(self)
+            AnalysisFunctions.updateIncomeTab(self, self.INDEX_TO_MONTHRANGE[index])
+
+        self.ui.comboBox_analysis_incomeRange.currentTextChanged.connect(incomeRangeChanged)
+
+
+        ### END ————— ANALYSIS PAGE ###
 
         ### START ——— HELP PAGE ###
 
@@ -226,19 +266,23 @@ class MainWindow(QMainWindow):
         self.fillTable(self.df)
         UIFunctions.scrollToBottom(self)
         UIFunctions.setDateEdits(self, self.ensureDateRange(self.df))
-        self.setupDashBoard()
-    
+        self.updateDashboard()
+        self.updateAnalysisPage()
+        
     # Sets up the dashboard page
     # TODO Once ability to read balances from spreadsheets is completed, update correct balances on the dashboard
-    def setupDashBoard(self):
+    def updateDashboard(self):
         # Set up account summary
         accounts = UIFunctions.getDashBoardAccounts(self)
         UIFunctions.updateAccountSummary(self, accounts[0], accounts[1])
-        AnalysisFunctions.totalSpendingAndIncome(self)
+        AnalysisFunctions.updateTotalSpendingAndIncome(self)
 
+    def updateAnalysisPage(self):
+        AnalysisFunctions.updateTabs(self)
+        
     # Gets the valid start and end dates ——— note df is already sorted
     def ensureDateRange(self, local_df: pd.DataFrame) -> tuple:
-        if self.is_df_Empty(local_df):
+        if self.is_df_empty(local_df):
             return (self.fromDate, self.toDate) # no change to dates
 
         sorted_df = self.sortDataFrame(local_df)
@@ -286,7 +330,7 @@ class MainWindow(QMainWindow):
     
     # Updates an exisiting accounts name in all respective locations
     def updateAccount(self, oldAccName: str, newAccName: str):
-        if not self.is_df_Empty(self.df):
+        if not self.is_df_empty(self.df):
             self.df["Account"].replace(oldAccName, newAccName, inplace=True) #update df
         
         self.accounts[self.accounts.index(oldAccName)] = newAccName # update list
@@ -302,7 +346,7 @@ class MainWindow(QMainWindow):
     def deleteAccount(self, acc):
         self.accounts.remove(acc)
 
-        if not self.is_df_Empty(self.df):
+        if not self.is_df_empty(self.df):
             self.df["Account"].replace(acc, "None", inplace=True) #update df
 
         UIFunctions.clearAllAccountComboBoxes(self)
@@ -375,9 +419,8 @@ class MainWindow(QMainWindow):
             self.displayed_df = sorted_df
             self.fillTable(sorted_df)
 
-            # update dashboard
-            AnalysisFunctions.totalSpendingAndIncome(self)
-
+            self.updateDashboard()
+            self.updateAnalysisPage()
         except FileNotFoundError:
             print("File ERROR. Please make sure that the specified path and file name is correct")
 
@@ -389,7 +432,7 @@ class MainWindow(QMainWindow):
         filteredFromDate: QDate = UIFunctions.getFromDate_filter(self)
         filteredToDate: QDate = UIFunctions.getToDate_filter(self)
 
-        if self.is_df_Empty(self.df): return
+        if self.is_df_empty(self.df): return
 
         df_to_filter = self.df
 
@@ -465,7 +508,7 @@ class MainWindow(QMainWindow):
             return "$" + formatted
     
     # Checks whether the specified dataframe is empty
-    def is_df_Empty(self, local_df: pd.DataFrame):
+    def is_df_empty(self, local_df: pd.DataFrame):
         return local_df.empty
         
 if __name__ == "__main__":

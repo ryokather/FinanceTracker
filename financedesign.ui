@@ -1741,22 +1741,867 @@ border-style:ridge; border-width: 1px; border-radius:7px; border-color: rgba(80,
           <property name="styleSheet">
            <string notr="true">background-color: rgb(255, 255, 255);</string>
           </property>
-          <widget class="QLabel" name="temp_AnalysisPageLabel">
-           <property name="geometry">
-            <rect>
-             <x>310</x>
-             <y>290</y>
-             <width>221</width>
-             <height>25</height>
-            </rect>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="leftMargin">
+            <number>48</number>
            </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0); font: 25 18pt &quot;Open Sans&quot;;</string>
+           <property name="topMargin">
+            <number>48</number>
            </property>
-           <property name="text">
-            <string>Analysis Page Coming Soon</string>
+           <property name="rightMargin">
+            <number>48</number>
            </property>
-          </widget>
+           <property name="bottomMargin">
+            <number>24</number>
+           </property>
+           <item>
+            <widget class="QTabWidget" name="tabWidget">
+             <property name="styleSheet">
+              <string notr="true">QTabWidget::pane {
+    border-style:groove;
+	border-width: 1px;
+	border-radius:7px; 	
+	border-color: rgba(80,80,80,75);
+}
+
+QTabBar::tab {
+    border-style:groove;
+	border-width: 1px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-color: rgba(80,80,80,75);
+	font: 25 18pt &quot;Open Sans&quot;;
+	width:266px;
+	height: 20px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgba(80,80,80,75);
+	color: #005B8C;
+}
+
+QTabBar::tab:!selected {
+    background-color: white;
+}
+
+QTabBar::tab:!selected:hover {
+    background: #999;
+}
+
+QTabBar::tab:top, QTabBar::tab:bottom {
+    min-width: 8ex;
+    margin-right: -1px;
+    padding: 5px 10px 5px 10px;
+}
+
+QTabBar::tab:top:last, QTabBar::tab:bottom:last,
+QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {
+    margin-right: 0;
+}
+
+QTabBar::tab:left:!selected {
+    margin-right: 3px;
+}
+
+QTabBar::tab:right:!selected {
+    margin-left: 3px;
+}
+
+QTabBar::tab:left, QTabBar::tab:right {
+    min-height: 8ex;
+    padding: 10px 5px 10px 5px;
+}
+
+QTabBar::tab:left:selected {
+    border-left-color: none;
+}
+
+QTabBar::tab:right:selected {
+    border-right-color: none;
+}
+
+QTabBar::tab:left:last, QTabBar::tab:right:last,
+QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
+    margin-bottom: 0;
+}</string>
+             </property>
+             <property name="tabPosition">
+              <enum>QTabWidget::North</enum>
+             </property>
+             <property name="tabShape">
+              <enum>QTabWidget::Rounded</enum>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <property name="tabBarAutoHide">
+              <bool>false</bool>
+             </property>
+             <widget class="QWidget" name="tab_spending">
+              <attribute name="title">
+               <string>Spending</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_spendingHolder">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <property name="leftMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_barGraphHolder">
+                    <property name="minimumSize">
+                     <size>
+                      <width>834</width>
+                      <height>287</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_14">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="MplWidget" name="widget_spendingPlot" native="true">
+                       <property name="minimumSize">
+                        <size>
+                         <width>834</width>
+                         <height>422</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">font: 25 18pt &quot;Open Sans&quot;;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="frame_spendingTextHolder">
+                       <property name="styleSheet">
+                        <string notr="true">QLabel {
+	font: 25 14pt &quot;Open Sans&quot;;
+}
+</string>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::NoFrame</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QGridLayout" name="gridLayout_12">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_analysisPage_7">
+                          <property name="minimumSize">
+                           <size>
+                            <width>75</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Spending in</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="6">
+                         <widget class="QLabel" name="label_analysisPg_spendingPerMonth">
+                          <property name="minimumSize">
+                           <size>
+                            <width>60</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>$0.00</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="5">
+                         <spacer name="horizontalSpacer_3">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QComboBox" name="comboBox_analysis_spendingPerMonth">
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>21</height>
+                           </size>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>Select Month</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>January</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>February</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>March</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>April</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>May</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>June</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>July</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>August</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>September</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>October</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>November</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>December</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item row="1" column="6">
+                         <widget class="QLabel" name="label_analysisPg_avgSpendingPerMonth">
+                          <property name="minimumSize">
+                           <size>
+                            <width>60</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>$0.00</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0" colspan="2">
+                         <widget class="QWidget" name="frame_avgIncomeContainer_2" native="true">
+                          <layout class="QHBoxLayout" name="horizontalLayout_5">
+                           <property name="spacing">
+                            <number>0</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QLabel" name="label_analysisPage_8">
+                             <property name="minimumSize">
+                              <size>
+                               <width>130</width>
+                               <height>24</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="text">
+                              <string>Average Spending / </string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QComboBox" name="comboBox_analysis_spendingRange">
+                             <property name="minimumSize">
+                              <size>
+                               <width>107</width>
+                               <height>21</height>
+                              </size>
+                             </property>
+                             <property name="sizeAdjustPolicy">
+                              <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>3 months</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>6 months</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>1 year</string>
+                              </property>
+                             </item>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_income">
+              <attribute name="title">
+               <string>Income</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_15" stretch="0">
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_incomeHolder">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_16">
+                  <property name="leftMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>5</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="MplWidget" name="widget_incomePlot" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>422</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_incomeTextHolder">
+                    <property name="maximumSize">
+                     <size>
+                      <width>848</width>
+                      <height>84</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLabel {
+	font: 25 14pt &quot;Open Sans&quot;;
+}
+</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_11">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_analysisPage_5">
+                       <property name="minimumSize">
+                        <size>
+                         <width>69</width>
+                         <height>24</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string>Income in</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="6">
+                      <widget class="QLabel" name="label_analysisPg_incomePerMonth">
+                       <property name="minimumSize">
+                        <size>
+                         <width>60</width>
+                         <height>24</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string> $0.00</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="5">
+                      <spacer name="horizontalSpacer_2">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="comboBox_analysis_incomePerMonth">
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>21</height>
+                        </size>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>Select Month</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>January</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>February</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>March</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>April</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>May</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>June</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>July</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>August</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>September</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>October</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>November</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>December</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="1" column="6">
+                      <widget class="QLabel" name="label_analysisPg_avgIncomePerMonth">
+                       <property name="minimumSize">
+                        <size>
+                         <width>60</width>
+                         <height>24</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string>$0.00</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0" colspan="2">
+                      <widget class="QWidget" name="frame_avgIncomeContainer" native="true">
+                       <layout class="QHBoxLayout" name="horizontalLayout_4">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_analysisPage_6">
+                          <property name="minimumSize">
+                           <size>
+                            <width>120</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Average Income / </string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="comboBox_analysis_incomeRange">
+                          <property name="sizeAdjustPolicy">
+                           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>3 months</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>6 months</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>1 year</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_categories">
+              <attribute name="title">
+               <string>Categories</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <property name="bottomMargin">
+                <number>5</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frame_pieChartHolder">
+                 <property name="minimumSize">
+                  <size>
+                   <width>409</width>
+                   <height>200</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">font: 25 18pt &quot;Open Sans&quot;;</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_categoryTable">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <property name="spacing">
+                   <number>20</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="label_categories">
+                    <property name="styleSheet">
+                     <string notr="true">font: 25 16pt &quot;Open Sans&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Category Breakdown</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="table_categories">
+                    <property name="styleSheet">
+                     <string notr="true">QTableWidget {
+	font: 25 12pt &quot;Open Sans&quot;;
+}
+QHeaderView {
+	qproperty-defaultAlignment: AlignLeft AlignVCenter;
+}
+QHeaderView::section{
+	padding: 10px;
+	border: none;
+	background-color:rgb(200,200,200);
+	font: 25 14pt &quot;Open Sans&quot;; 
+}
+QTableView::item {
+	background-color: rgb(249, 247, 244);
+}</string>
+                    </property>
+                    <attribute name="horizontalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="horizontalHeaderDefaultSectionSize">
+                     <number>100</number>
+                    </attribute>
+                    <attribute name="horizontalHeaderHighlightSections">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="horizontalHeaderStretchLastSection">
+                     <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderStretchLastSection">
+                     <bool>false</bool>
+                    </attribute>
+                    <row>
+                     <property name="text">
+                      <string>Category1</string>
+                     </property>
+                    </row>
+                    <column>
+                     <property name="text">
+                      <string>Icon</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Category</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Amount</string>
+                     </property>
+                    </column>
+                    <item row="0" column="0">
+                     <property name="text">
+                      <string>Icon</string>
+                     </property>
+                    </item>
+                    <item row="0" column="1">
+                     <property name="text">
+                      <string>Groceries</string>
+                     </property>
+                    </item>
+                    <item row="0" column="2">
+                     <property name="text">
+                      <string>$50 spent</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="helpPage">
           <property name="styleSheet">
@@ -1827,7 +2672,7 @@ color: #005B8C;</string>
                  <string notr="true">font: 25 14pt &quot;Open Sans&quot;;</string>
                 </property>
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes! Detailed step-by-step instructions on how to install and use the application is detailed here  (link)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes! Detailed step-by-step instructions on how to install and use the application is detailed here: github.com/ryokather/financetracker&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1852,29 +2697,9 @@ color: #005B8C;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>Is there a faster way to add transactions instead of adding one csv file at a time?</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="styleSheet">
-                 <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes, I have implemented a shortcut to add multiple transactions at a time. In the add transactions field, if you enter &amp;quot;Everything from &amp;lt;directoryName&amp;gt;&amp;quot; where directory name must be a directory inside your current directory, all csv files specified by the selected account will be added. Additionally, for this method to work all CSV files to batch add must start with the account name. For example, to batch add transactions from account name &amp;quot;credit_card&amp;quot;, all CSV files corresponding to that account must start with &amp;quot;credit_card.&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QLabel" name="label_help5">
                 <property name="text">
-                 <string>Where can I leave feedback/report a bug?</string>
+                 <string>Is there a faster way to add transactions instead of adding one csv file at a time?</string>
                 </property>
                </widget>
               </item>
@@ -1884,7 +2709,27 @@ color: #005B8C;</string>
                  <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
                 </property>
                 <property name="text">
-                 <string>I very much appreciate any feedback! You can leave an issue on GitHub or fill out this google form: https://forms.gle/rGoa8L1Wy8525GDu5.</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes, there is a shortcut to add multiple transactions at a time. In the add transactions field, if you enter &amp;quot;Everything from &amp;lt;directoryName&amp;gt;&amp;quot; where directory name must be a directory inside your current directory, all csv files specified by the selected account will be added. Additionally, for this method to work all CSV files to batch add must start with the account name. For example, to batch add transactions from account name &amp;quot;credit_card&amp;quot;, all CSV files corresponding to that account must start with &amp;quot;credit_card.&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_help7">
+                <property name="text">
+                 <string>Where can I leave feedback/report a bug?</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_help8">
+                <property name="styleSheet">
+                 <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
+                </property>
+                <property name="text">
+                 <string>Feedback is very much appreciated! You can leave an issue on GitHub or fill out this google form: https://forms.gle/rGoa8L1Wy8525GDu5.</string>
                 </property>
                 <property name="textFormat">
                  <enum>Qt::AutoText</enum>
@@ -1895,14 +2740,14 @@ color: #005B8C;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_help7">
+               <widget class="QLabel" name="label_help9">
                 <property name="text">
                  <string>Some features don't work!</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_help8">
+               <widget class="QLabel" name="label_help10">
                 <property name="styleSheet">
                  <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
                 </property>
@@ -2102,6 +2947,14 @@ color: #005B8C;</string>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MplWidget</class>
+   <extends>QWidget</extends>
+   <header>mplwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

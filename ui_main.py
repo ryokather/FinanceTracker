@@ -753,10 +753,327 @@ class Ui_FinanceApp(object):
         self.analysisPage = QtWidgets.QWidget()
         self.analysisPage.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.analysisPage.setObjectName("analysisPage")
-        self.temp_AnalysisPageLabel = QtWidgets.QLabel(self.analysisPage)
-        self.temp_AnalysisPageLabel.setGeometry(QtCore.QRect(310, 290, 221, 25))
-        self.temp_AnalysisPageLabel.setStyleSheet("color: rgb(0, 0, 0); font: 25 18pt \"Open Sans\";")
-        self.temp_AnalysisPageLabel.setObjectName("temp_AnalysisPageLabel")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.analysisPage)
+        self.verticalLayout_11.setContentsMargins(48, 48, 48, 24)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.tabWidget = QtWidgets.QTabWidget(self.analysisPage)
+        self.tabWidget.setStyleSheet("QTabWidget::pane {\n"
+"    border-style:groove;\n"
+"    border-width: 1px;\n"
+"    border-radius:7px;     \n"
+"    border-color: rgba(80,80,80,75);\n"
+"}\n"
+"\n"
+"QTabBar::tab {\n"
+"    border-style:groove;\n"
+"    border-width: 1px;\n"
+"    border-top-left-radius: 7px;\n"
+"    border-top-right-radius: 7px;\n"
+"    border-color: rgba(80,80,80,75);\n"
+"    font: 25 18pt \"Open Sans\";\n"
+"    width:266px;\n"
+"    height: 20px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    background-color: rgba(80,80,80,75);\n"
+"    color: #005B8C;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected:hover {\n"
+"    background: #999;\n"
+"}\n"
+"\n"
+"QTabBar::tab:top, QTabBar::tab:bottom {\n"
+"    min-width: 8ex;\n"
+"    margin-right: -1px;\n"
+"    padding: 5px 10px 5px 10px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:top:last, QTabBar::tab:bottom:last,\n"
+"QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {\n"
+"    margin-right: 0;\n"
+"}\n"
+"\n"
+"QTabBar::tab:left:!selected {\n"
+"    margin-right: 3px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:right:!selected {\n"
+"    margin-left: 3px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:left, QTabBar::tab:right {\n"
+"    min-height: 8ex;\n"
+"    padding: 10px 5px 10px 5px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:left:selected {\n"
+"    border-left-color: none;\n"
+"}\n"
+"\n"
+"QTabBar::tab:right:selected {\n"
+"    border-right-color: none;\n"
+"}\n"
+"\n"
+"QTabBar::tab:left:last, QTabBar::tab:right:last,\n"
+"QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {\n"
+"    margin-bottom: 0;\n"
+"}")
+        self.tabWidget.setTabPosition(QtWidgets.QTabWidget.North)
+        self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
+        self.tabWidget.setTabBarAutoHide(False)
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab_spending = QtWidgets.QWidget()
+        self.tab_spending.setObjectName("tab_spending")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.tab_spending)
+        self.verticalLayout_12.setContentsMargins(5, 5, 5, 0)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.frame_spendingHolder = QtWidgets.QFrame(self.tab_spending)
+        self.frame_spendingHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_spendingHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_spendingHolder.setObjectName("frame_spendingHolder")
+        self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.frame_spendingHolder)
+        self.verticalLayout_17.setContentsMargins(5, 5, 5, 0)
+        self.verticalLayout_17.setObjectName("verticalLayout_17")
+        self.frame_barGraphHolder = QtWidgets.QFrame(self.frame_spendingHolder)
+        self.frame_barGraphHolder.setMinimumSize(QtCore.QSize(834, 287))
+        self.frame_barGraphHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_barGraphHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_barGraphHolder.setObjectName("frame_barGraphHolder")
+        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.frame_barGraphHolder)
+        self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_14.setObjectName("verticalLayout_14")
+        self.widget_spendingPlot = MplWidget(self.frame_barGraphHolder)
+        self.widget_spendingPlot.setMinimumSize(QtCore.QSize(834, 422))
+        self.widget_spendingPlot.setStyleSheet("font: 25 18pt \"Open Sans\";")
+        self.widget_spendingPlot.setObjectName("widget_spendingPlot")
+        self.verticalLayout_14.addWidget(self.widget_spendingPlot)
+        self.frame_spendingTextHolder = QtWidgets.QFrame(self.frame_barGraphHolder)
+        self.frame_spendingTextHolder.setStyleSheet("QLabel {\n"
+"    font: 25 14pt \"Open Sans\";\n"
+"}\n"
+"")
+        self.frame_spendingTextHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_spendingTextHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_spendingTextHolder.setObjectName("frame_spendingTextHolder")
+        self.gridLayout_12 = QtWidgets.QGridLayout(self.frame_spendingTextHolder)
+        self.gridLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_12.setObjectName("gridLayout_12")
+        self.label_analysisPage_7 = QtWidgets.QLabel(self.frame_spendingTextHolder)
+        self.label_analysisPage_7.setMinimumSize(QtCore.QSize(75, 24))
+        self.label_analysisPage_7.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.label_analysisPage_7.setObjectName("label_analysisPage_7")
+        self.gridLayout_12.addWidget(self.label_analysisPage_7, 0, 0, 1, 1)
+        self.label_analysisPg_spendingPerMonth = QtWidgets.QLabel(self.frame_spendingTextHolder)
+        self.label_analysisPg_spendingPerMonth.setMinimumSize(QtCore.QSize(60, 24))
+        self.label_analysisPg_spendingPerMonth.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_analysisPg_spendingPerMonth.setObjectName("label_analysisPg_spendingPerMonth")
+        self.gridLayout_12.addWidget(self.label_analysisPg_spendingPerMonth, 0, 6, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_12.addItem(spacerItem4, 0, 5, 1, 1)
+        self.comboBox_analysis_spendingPerMonth = QtWidgets.QComboBox(self.frame_spendingTextHolder)
+        self.comboBox_analysis_spendingPerMonth.setMinimumSize(QtCore.QSize(150, 21))
+        self.comboBox_analysis_spendingPerMonth.setObjectName("comboBox_analysis_spendingPerMonth")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.comboBox_analysis_spendingPerMonth.addItem("")
+        self.gridLayout_12.addWidget(self.comboBox_analysis_spendingPerMonth, 0, 1, 1, 1)
+        self.label_analysisPg_avgSpendingPerMonth = QtWidgets.QLabel(self.frame_spendingTextHolder)
+        self.label_analysisPg_avgSpendingPerMonth.setMinimumSize(QtCore.QSize(60, 24))
+        self.label_analysisPg_avgSpendingPerMonth.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_analysisPg_avgSpendingPerMonth.setObjectName("label_analysisPg_avgSpendingPerMonth")
+        self.gridLayout_12.addWidget(self.label_analysisPg_avgSpendingPerMonth, 1, 6, 1, 1)
+        self.frame_avgIncomeContainer_2 = QtWidgets.QWidget(self.frame_spendingTextHolder)
+        self.frame_avgIncomeContainer_2.setObjectName("frame_avgIncomeContainer_2")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame_avgIncomeContainer_2)
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.label_analysisPage_8 = QtWidgets.QLabel(self.frame_avgIncomeContainer_2)
+        self.label_analysisPage_8.setMinimumSize(QtCore.QSize(130, 24))
+        self.label_analysisPage_8.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.label_analysisPage_8.setObjectName("label_analysisPage_8")
+        self.horizontalLayout_5.addWidget(self.label_analysisPage_8)
+        self.comboBox_analysis_spendingRange = QtWidgets.QComboBox(self.frame_avgIncomeContainer_2)
+        self.comboBox_analysis_spendingRange.setMinimumSize(QtCore.QSize(107, 21))
+        self.comboBox_analysis_spendingRange.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
+        self.comboBox_analysis_spendingRange.setObjectName("comboBox_analysis_spendingRange")
+        self.comboBox_analysis_spendingRange.addItem("")
+        self.comboBox_analysis_spendingRange.addItem("")
+        self.comboBox_analysis_spendingRange.addItem("")
+        self.horizontalLayout_5.addWidget(self.comboBox_analysis_spendingRange)
+        self.gridLayout_12.addWidget(self.frame_avgIncomeContainer_2, 1, 0, 1, 2)
+        self.verticalLayout_14.addWidget(self.frame_spendingTextHolder)
+        self.verticalLayout_17.addWidget(self.frame_barGraphHolder)
+        self.verticalLayout_12.addWidget(self.frame_spendingHolder)
+        self.tabWidget.addTab(self.tab_spending, "")
+        self.tab_income = QtWidgets.QWidget()
+        self.tab_income.setObjectName("tab_income")
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.tab_income)
+        self.verticalLayout_15.setContentsMargins(5, 5, 5, 0)
+        self.verticalLayout_15.setObjectName("verticalLayout_15")
+        self.frame_incomeHolder = QtWidgets.QFrame(self.tab_income)
+        self.frame_incomeHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_incomeHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_incomeHolder.setObjectName("frame_incomeHolder")
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.frame_incomeHolder)
+        self.verticalLayout_16.setContentsMargins(5, 5, 5, 0)
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.widget_incomePlot = MplWidget(self.frame_incomeHolder)
+        self.widget_incomePlot.setMinimumSize(QtCore.QSize(0, 422))
+        self.widget_incomePlot.setObjectName("widget_incomePlot")
+        self.verticalLayout_16.addWidget(self.widget_incomePlot)
+        self.frame_incomeTextHolder = QtWidgets.QFrame(self.frame_incomeHolder)
+        self.frame_incomeTextHolder.setMaximumSize(QtCore.QSize(848, 84))
+        self.frame_incomeTextHolder.setStyleSheet("QLabel {\n"
+"    font: 25 14pt \"Open Sans\";\n"
+"}\n"
+"")
+        self.frame_incomeTextHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_incomeTextHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_incomeTextHolder.setObjectName("frame_incomeTextHolder")
+        self.gridLayout_11 = QtWidgets.QGridLayout(self.frame_incomeTextHolder)
+        self.gridLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.label_analysisPage_5 = QtWidgets.QLabel(self.frame_incomeTextHolder)
+        self.label_analysisPage_5.setMinimumSize(QtCore.QSize(69, 24))
+        self.label_analysisPage_5.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.label_analysisPage_5.setObjectName("label_analysisPage_5")
+        self.gridLayout_11.addWidget(self.label_analysisPage_5, 0, 0, 1, 1)
+        self.label_analysisPg_incomePerMonth = QtWidgets.QLabel(self.frame_incomeTextHolder)
+        self.label_analysisPg_incomePerMonth.setMinimumSize(QtCore.QSize(60, 24))
+        self.label_analysisPg_incomePerMonth.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_analysisPg_incomePerMonth.setObjectName("label_analysisPg_incomePerMonth")
+        self.gridLayout_11.addWidget(self.label_analysisPg_incomePerMonth, 0, 6, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_11.addItem(spacerItem5, 0, 5, 1, 1)
+        self.comboBox_analysis_incomePerMonth = QtWidgets.QComboBox(self.frame_incomeTextHolder)
+        self.comboBox_analysis_incomePerMonth.setMinimumSize(QtCore.QSize(150, 21))
+        self.comboBox_analysis_incomePerMonth.setObjectName("comboBox_analysis_incomePerMonth")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.comboBox_analysis_incomePerMonth.addItem("")
+        self.gridLayout_11.addWidget(self.comboBox_analysis_incomePerMonth, 0, 1, 1, 1)
+        self.label_analysisPg_avgIncomePerMonth = QtWidgets.QLabel(self.frame_incomeTextHolder)
+        self.label_analysisPg_avgIncomePerMonth.setMinimumSize(QtCore.QSize(60, 24))
+        self.label_analysisPg_avgIncomePerMonth.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_analysisPg_avgIncomePerMonth.setObjectName("label_analysisPg_avgIncomePerMonth")
+        self.gridLayout_11.addWidget(self.label_analysisPg_avgIncomePerMonth, 1, 6, 1, 1)
+        self.frame_avgIncomeContainer = QtWidgets.QWidget(self.frame_incomeTextHolder)
+        self.frame_avgIncomeContainer.setObjectName("frame_avgIncomeContainer")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_avgIncomeContainer)
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.label_analysisPage_6 = QtWidgets.QLabel(self.frame_avgIncomeContainer)
+        self.label_analysisPage_6.setMinimumSize(QtCore.QSize(120, 24))
+        self.label_analysisPage_6.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.label_analysisPage_6.setObjectName("label_analysisPage_6")
+        self.horizontalLayout_4.addWidget(self.label_analysisPage_6)
+        self.comboBox_analysis_incomeRange = QtWidgets.QComboBox(self.frame_avgIncomeContainer)
+        self.comboBox_analysis_incomeRange.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLength)
+        self.comboBox_analysis_incomeRange.setObjectName("comboBox_analysis_incomeRange")
+        self.comboBox_analysis_incomeRange.addItem("")
+        self.comboBox_analysis_incomeRange.addItem("")
+        self.comboBox_analysis_incomeRange.addItem("")
+        self.horizontalLayout_4.addWidget(self.comboBox_analysis_incomeRange)
+        self.gridLayout_11.addWidget(self.frame_avgIncomeContainer, 1, 0, 1, 2)
+        self.verticalLayout_16.addWidget(self.frame_incomeTextHolder)
+        self.verticalLayout_15.addWidget(self.frame_incomeHolder)
+        self.tabWidget.addTab(self.tab_income, "")
+        self.tab_categories = QtWidgets.QWidget()
+        self.tab_categories.setObjectName("tab_categories")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.tab_categories)
+        self.horizontalLayout_6.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.frame_pieChartHolder = QtWidgets.QFrame(self.tab_categories)
+        self.frame_pieChartHolder.setMinimumSize(QtCore.QSize(409, 200))
+        self.frame_pieChartHolder.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.frame_pieChartHolder.setStyleSheet("font: 25 18pt \"Open Sans\";")
+        self.frame_pieChartHolder.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_pieChartHolder.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_pieChartHolder.setObjectName("frame_pieChartHolder")
+        self.horizontalLayout_6.addWidget(self.frame_pieChartHolder)
+        self.frame_categoryTable = QtWidgets.QFrame(self.tab_categories)
+        self.frame_categoryTable.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.frame_categoryTable.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_categoryTable.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_categoryTable.setObjectName("frame_categoryTable")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_categoryTable)
+        self.verticalLayout_13.setSpacing(20)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.label_categories = QtWidgets.QLabel(self.frame_categoryTable)
+        self.label_categories.setStyleSheet("font: 25 16pt \"Open Sans\";")
+        self.label_categories.setObjectName("label_categories")
+        self.verticalLayout_13.addWidget(self.label_categories)
+        self.table_categories = QtWidgets.QTableWidget(self.frame_categoryTable)
+        self.table_categories.setStyleSheet("QTableWidget {\n"
+"    font: 25 12pt \"Open Sans\";\n"
+"}\n"
+"QHeaderView {\n"
+"    qproperty-defaultAlignment: AlignLeft AlignVCenter;\n"
+"}\n"
+"QHeaderView::section{\n"
+"    padding: 10px;\n"
+"    border: none;\n"
+"    background-color:rgb(200,200,200);\n"
+"    font: 25 14pt \"Open Sans\"; \n"
+"}\n"
+"QTableView::item {\n"
+"    background-color: rgb(249, 247, 244);\n"
+"}")
+        self.table_categories.setObjectName("table_categories")
+        self.table_categories.setColumnCount(3)
+        self.table_categories.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setItem(0, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_categories.setItem(0, 2, item)
+        self.table_categories.horizontalHeader().setVisible(False)
+        self.table_categories.horizontalHeader().setDefaultSectionSize(100)
+        self.table_categories.horizontalHeader().setHighlightSections(False)
+        self.table_categories.horizontalHeader().setStretchLastSection(True)
+        self.table_categories.verticalHeader().setVisible(False)
+        self.table_categories.verticalHeader().setStretchLastSection(False)
+        self.verticalLayout_13.addWidget(self.table_categories)
+        self.horizontalLayout_6.addWidget(self.frame_categoryTable)
+        self.tabWidget.addTab(self.tab_categories, "")
+        self.verticalLayout_11.addWidget(self.tabWidget)
         self.stackedWidget.addWidget(self.analysisPage)
         self.helpPage = QtWidgets.QWidget()
         self.helpPage.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -803,20 +1120,11 @@ class Ui_FinanceApp(object):
         self.label_help4.setWordWrap(True)
         self.label_help4.setObjectName("label_help4")
         self.verticalLayout_10.addWidget(self.label_help4)
-        self.label = QtWidgets.QLabel(self.frame_helpHolder)
-        self.label.setObjectName("label")
-        self.verticalLayout_10.addWidget(self.label)
-        self.label_2 = QtWidgets.QLabel(self.frame_helpHolder)
-        self.label_2.setStyleSheet("font: 25 12pt \"Open Sans\";")
-        self.label_2.setWordWrap(True)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_10.addWidget(self.label_2)
         self.label_help5 = QtWidgets.QLabel(self.frame_helpHolder)
         self.label_help5.setObjectName("label_help5")
         self.verticalLayout_10.addWidget(self.label_help5)
         self.label_help6 = QtWidgets.QLabel(self.frame_helpHolder)
         self.label_help6.setStyleSheet("font: 25 12pt \"Open Sans\";")
-        self.label_help6.setTextFormat(QtCore.Qt.AutoText)
         self.label_help6.setWordWrap(True)
         self.label_help6.setObjectName("label_help6")
         self.verticalLayout_10.addWidget(self.label_help6)
@@ -825,9 +1133,18 @@ class Ui_FinanceApp(object):
         self.verticalLayout_10.addWidget(self.label_help7)
         self.label_help8 = QtWidgets.QLabel(self.frame_helpHolder)
         self.label_help8.setStyleSheet("font: 25 12pt \"Open Sans\";")
+        self.label_help8.setTextFormat(QtCore.Qt.AutoText)
         self.label_help8.setWordWrap(True)
         self.label_help8.setObjectName("label_help8")
         self.verticalLayout_10.addWidget(self.label_help8)
+        self.label_help9 = QtWidgets.QLabel(self.frame_helpHolder)
+        self.label_help9.setObjectName("label_help9")
+        self.verticalLayout_10.addWidget(self.label_help9)
+        self.label_help10 = QtWidgets.QLabel(self.frame_helpHolder)
+        self.label_help10.setStyleSheet("font: 25 12pt \"Open Sans\";")
+        self.label_help10.setWordWrap(True)
+        self.label_help10.setObjectName("label_help10")
+        self.verticalLayout_10.addWidget(self.label_help10)
         self.verticalLayout_9.addWidget(self.frame_helpHolder)
         self.stackedWidget.addWidget(self.helpPage)
         self.settingsPage = QtWidgets.QWidget()
@@ -860,8 +1177,8 @@ class Ui_FinanceApp(object):
         self.lineEdit_enterName.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lineEdit_enterName.setObjectName("lineEdit_enterName")
         self.gridLayout_2.addWidget(self.lineEdit_enterName, 1, 1, 1, 2)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem4, 6, 1, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout_2.addItem(spacerItem6, 6, 1, 1, 1)
         self.label_editDashboard = QtWidgets.QLabel(self.frame)
         self.label_editDashboard.setStyleSheet("font: 25 24pt \"Open Sans\";\n"
 "color: #005B8C;")
@@ -889,8 +1206,8 @@ class Ui_FinanceApp(object):
         self.comboBox_settings_acc2.setObjectName("comboBox_settings_acc2")
         self.comboBox_settings_acc2.addItem("")
         self.gridLayout_2.addWidget(self.comboBox_settings_acc2, 5, 2, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.gridLayout_2.addItem(spacerItem5, 3, 0, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_2.addItem(spacerItem7, 3, 0, 1, 1)
         self.verticalLayout_4.addWidget(self.frame)
         self.stackedWidget.addWidget(self.settingsPage)
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -899,6 +1216,7 @@ class Ui_FinanceApp(object):
 
         self.retranslateUi(FinanceApp)
         self.stackedWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(FinanceApp)
 
     def retranslateUi(self, FinanceApp):
@@ -966,18 +1284,78 @@ class Ui_FinanceApp(object):
         self.comboBox_add_accSelection.setCurrentText(_translate("FinanceApp", "Select Account"))
         self.comboBox_add_accSelection.setItemText(0, _translate("FinanceApp", "Select Account"))
         self.lineEdit_fileInput.setText(_translate("FinanceApp", "Enter name and path to csv file"))
-        self.temp_AnalysisPageLabel.setText(_translate("FinanceApp", "Analysis Page Coming Soon"))
+        self.label_analysisPage_7.setText(_translate("FinanceApp", "Spending in"))
+        self.label_analysisPg_spendingPerMonth.setText(_translate("FinanceApp", "$0.00"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(0, _translate("FinanceApp", "Select Month"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(1, _translate("FinanceApp", "January"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(2, _translate("FinanceApp", "February"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(3, _translate("FinanceApp", "March"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(4, _translate("FinanceApp", "April"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(5, _translate("FinanceApp", "May"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(6, _translate("FinanceApp", "June"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(7, _translate("FinanceApp", "July"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(8, _translate("FinanceApp", "August"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(9, _translate("FinanceApp", "September"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(10, _translate("FinanceApp", "October"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(11, _translate("FinanceApp", "November"))
+        self.comboBox_analysis_spendingPerMonth.setItemText(12, _translate("FinanceApp", "December"))
+        self.label_analysisPg_avgSpendingPerMonth.setText(_translate("FinanceApp", "$0.00"))
+        self.label_analysisPage_8.setText(_translate("FinanceApp", "Average Spending / "))
+        self.comboBox_analysis_spendingRange.setItemText(0, _translate("FinanceApp", "3 months"))
+        self.comboBox_analysis_spendingRange.setItemText(1, _translate("FinanceApp", "6 months"))
+        self.comboBox_analysis_spendingRange.setItemText(2, _translate("FinanceApp", "1 year"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_spending), _translate("FinanceApp", "Spending"))
+        self.label_analysisPage_5.setText(_translate("FinanceApp", "Income in"))
+        self.label_analysisPg_incomePerMonth.setText(_translate("FinanceApp", " $0.00"))
+        self.comboBox_analysis_incomePerMonth.setItemText(0, _translate("FinanceApp", "Select Month"))
+        self.comboBox_analysis_incomePerMonth.setItemText(1, _translate("FinanceApp", "January"))
+        self.comboBox_analysis_incomePerMonth.setItemText(2, _translate("FinanceApp", "February"))
+        self.comboBox_analysis_incomePerMonth.setItemText(3, _translate("FinanceApp", "March"))
+        self.comboBox_analysis_incomePerMonth.setItemText(4, _translate("FinanceApp", "April"))
+        self.comboBox_analysis_incomePerMonth.setItemText(5, _translate("FinanceApp", "May"))
+        self.comboBox_analysis_incomePerMonth.setItemText(6, _translate("FinanceApp", "June"))
+        self.comboBox_analysis_incomePerMonth.setItemText(7, _translate("FinanceApp", "July"))
+        self.comboBox_analysis_incomePerMonth.setItemText(8, _translate("FinanceApp", "August"))
+        self.comboBox_analysis_incomePerMonth.setItemText(9, _translate("FinanceApp", "September"))
+        self.comboBox_analysis_incomePerMonth.setItemText(10, _translate("FinanceApp", "October"))
+        self.comboBox_analysis_incomePerMonth.setItemText(11, _translate("FinanceApp", "November"))
+        self.comboBox_analysis_incomePerMonth.setItemText(12, _translate("FinanceApp", "December"))
+        self.label_analysisPg_avgIncomePerMonth.setText(_translate("FinanceApp", "$0.00"))
+        self.label_analysisPage_6.setText(_translate("FinanceApp", "Average Income / "))
+        self.comboBox_analysis_incomeRange.setItemText(0, _translate("FinanceApp", "3 months"))
+        self.comboBox_analysis_incomeRange.setItemText(1, _translate("FinanceApp", "6 months"))
+        self.comboBox_analysis_incomeRange.setItemText(2, _translate("FinanceApp", "1 year"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_income), _translate("FinanceApp", "Income"))
+        self.label_categories.setText(_translate("FinanceApp", "Category Breakdown"))
+        item = self.table_categories.verticalHeaderItem(0)
+        item.setText(_translate("FinanceApp", "Category1"))
+        item = self.table_categories.horizontalHeaderItem(0)
+        item.setText(_translate("FinanceApp", "Icon"))
+        item = self.table_categories.horizontalHeaderItem(1)
+        item.setText(_translate("FinanceApp", "Category"))
+        item = self.table_categories.horizontalHeaderItem(2)
+        item.setText(_translate("FinanceApp", "Amount"))
+        __sortingEnabled = self.table_categories.isSortingEnabled()
+        self.table_categories.setSortingEnabled(False)
+        item = self.table_categories.item(0, 0)
+        item.setText(_translate("FinanceApp", "Icon"))
+        item = self.table_categories.item(0, 1)
+        item.setText(_translate("FinanceApp", "Groceries"))
+        item = self.table_categories.item(0, 2)
+        item.setText(_translate("FinanceApp", "$50 spent"))
+        self.table_categories.setSortingEnabled(__sortingEnabled)
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_categories), _translate("FinanceApp", "Categories"))
         self.label_needHelp.setText(_translate("FinanceApp", "Need some help?"))
         self.label_help1.setText(_translate("FinanceApp", "Is there a tutorial on how to use this application?"))
-        self.label_help2.setText(_translate("FinanceApp", "<html><head/><body><p>Yes! Detailed step-by-step instructions on how to install and use the application is detailed here  (link)</p></body></html>"))
+        self.label_help2.setText(_translate("FinanceApp", "<html><head/><body><p>Yes! Detailed step-by-step instructions on how to install and use the application is detailed here: github.com/ryokather/financetracker</p></body></html>"))
         self.label_help3.setText(_translate("FinanceApp", "How do I add transactions from my bank statement?"))
         self.label_help4.setText(_translate("FinanceApp", "<html><head/><body><p>First, download your bank statement as a CSV or excel file. Now, before adding it into the application the columns must be in following order: &quot;Date, Merchant, Amount.&quot; Any excess columns will be removed when the file is being read. Currently there is not a feature for the transactions to be categorized but this will be availible in a future release. Additionally, ways to accommodate spreadsheets with different orderings and excess columns is planned to be availible in the future. For now, please make sure your spreadsheet follows the same order as the example.csv file.</p></body></html>"))
-        self.label.setText(_translate("FinanceApp", "Is there a faster way to add transactions instead of adding one csv file at a time?"))
-        self.label_2.setText(_translate("FinanceApp", "<html><head/><body><p>Yes, I have implemented a shortcut to add multiple transactions at a time. In the add transactions field, if you enter &quot;Everything from &lt;directoryName&gt;&quot; where directory name must be a directory inside your current directory, all csv files specified by the selected account will be added. Additionally, for this method to work all CSV files to batch add must start with the account name. For example, to batch add transactions from account name &quot;credit_card&quot;, all CSV files corresponding to that account must start with &quot;credit_card.&quot;</p></body></html>"))
-        self.label_help5.setText(_translate("FinanceApp", "Where can I leave feedback/report a bug?"))
-        self.label_help6.setText(_translate("FinanceApp", "I very much appreciate any feedback! You can leave an issue on GitHub or fill out this google form: https://forms.gle/rGoa8L1Wy8525GDu5."))
-        self.label_help7.setText(_translate("FinanceApp", "Some features don\'t work!"))
-        self.label_help8.setText(_translate("FinanceApp", "<html><head/><body><p>Yes :( some features have not been fully completed yet such as category recognition and detailing the current balance in an account in the dashboard section. These will be availible sometime in the future! Thank you for your patience!</p></body></html>"))
+        self.label_help5.setText(_translate("FinanceApp", "Is there a faster way to add transactions instead of adding one csv file at a time?"))
+        self.label_help6.setText(_translate("FinanceApp", "<html><head/><body><p>Yes, there is a shortcut to add multiple transactions at a time. In the add transactions field, if you enter &quot;Everything from &lt;directoryName&gt;&quot; where directory name must be a directory inside your current directory, all csv files specified by the selected account will be added. Additionally, for this method to work all CSV files to batch add must start with the account name. For example, to batch add transactions from account name &quot;credit_card&quot;, all CSV files corresponding to that account must start with &quot;credit_card.&quot;</p></body></html>"))
+        self.label_help7.setText(_translate("FinanceApp", "Where can I leave feedback/report a bug?"))
+        self.label_help8.setText(_translate("FinanceApp", "Feedback is very much appreciated! You can leave an issue on GitHub or fill out this google form: https://forms.gle/rGoa8L1Wy8525GDu5."))
+        self.label_help9.setText(_translate("FinanceApp", "Some features don\'t work!"))
+        self.label_help10.setText(_translate("FinanceApp", "<html><head/><body><p>Yes :( some features have not been fully completed yet such as category recognition and detailing the current balance in an account in the dashboard section. These will be availible sometime in the future! Thank you for your patience!</p></body></html>"))
         self.lineEdit_enterName.setText(_translate("FinanceApp", "Enter your name"))
         self.label_editDashboard.setText(_translate("FinanceApp", "Edit Dashboard"))
         self.label_chooseAccts.setText(_translate("FinanceApp", "Choose Accounts to Display:"))
@@ -985,6 +1363,7 @@ class Ui_FinanceApp(object):
         self.label_name.setText(_translate("FinanceApp", "Name:"))
         self.label_editInfo.setText(_translate("FinanceApp", "Edit Information"))
         self.comboBox_settings_acc2.setItemText(0, _translate("FinanceApp", "Select Account"))
+from mplwidget import MplWidget
 
 
 if __name__ == "__main__":
