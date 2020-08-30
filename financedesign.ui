@@ -2689,7 +2689,7 @@ color: #005B8C;</string>
                  <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
                 </property>
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;First, download your bank statement as a CSV or excel file. Now, before adding it into the application the columns must be in following order: &amp;quot;Date, Merchant, Amount.&amp;quot; Any excess columns will be removed when the file is being read. Currently there is not a feature for the transactions to be categorized but this will be availible in a future release. Additionally, ways to accommodate spreadsheets with different orderings and excess columns is planned to be availible in the future. For now, please make sure your spreadsheet follows the same order as the example.csv file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;First, download your bank statement as a CSV or excel file. Now, before adding it into the application the columns must be in following order: &amp;quot;Date, Merchant, Amount, Running Balance.&amp;quot; Any excess columns will be removed when the file is being read. Note that since not all statements include a running balance column, &amp;quot;Running Balance&amp;quot; is optional. Please make sure that the format of your transactions closely resemble the ones in the sampleTransactions folder.&lt;/p&gt;&lt;p&gt;Currently there is not a feature for the transactions to be categorized but this will be availible in a future release. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>
@@ -2752,7 +2752,7 @@ color: #005B8C;</string>
                  <string notr="true">font: 25 12pt &quot;Open Sans&quot;;</string>
                 </property>
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes :( some features have not been fully completed yet such as category recognition and detailing the current balance in an account in the dashboard section. These will be availible sometime in the future! Thank you for your patience!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yes :( some features such as category recognitionof transactions have not been implemented yet. These will be availible sometime in the future! Thank you for your patience!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>

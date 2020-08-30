@@ -38,7 +38,10 @@ As not all bank statements provide the account that the transactions are coming 
 
 ![](demos/demoAddAcc.gif)
 
-There are two methods of adding transactions into the applications
+There are two methods of adding transactions into the applications. Note that in either case, the csv file(s) must be formatted similar to the files found in
+`sampleTransactions`. Columns must be in the order Date, Merchant/Description, Amount, and Account Balance. Note that the last column, account balance, is
+optional as not all statements will detail an overall account balance. In the case that no account balance column is specified, in the `dashboard` tab,
+N/A will be displayed.
 
 1.  In the  `Enter name and path to csv file` line, enter the path to and name of the csv file. If an account is not selected from the account select
     dropdown menu, the account will be defaulted to None.
@@ -63,6 +66,8 @@ Viewing the **Analysis** tab will provide useful insight into one's spending and
 
 ![](demos/demoAnalysis.gif)
 
+To reset any transactions that were added, simply close the application and run `python3 db.py` before starting up the application again.
+
 ## Built With
 
 -   PyQt5 - A Python version of Qt designed as a cross-platform GUI framework
@@ -70,19 +75,6 @@ Viewing the **Analysis** tab will provide useful insight into one's spending and
 
 ## Project Status
 
--   Currently, the dashboard is unable to determine the current balance of each account as the application requires any row detailing excess information 
-    such as running, starting, or ending balance to be removed. Improvements will be made to improve file reading. For now please make sure that csv files
-    are formatted similar to the files in `sampleTransactions`
-
--   Currently, the application requires the columns representing Date, Merchant/Description, and Amount to explicitly come in that order for the program to
-    work. Additionally, columns titled "Reference Number", "Address", and "Running Bal."/"Running Balance" are filtered out. The filtered out columns were
-    determined according to Bank of America statements but they may or may not be different from another bank. Improvements are being made to handle csv
-    files with a wider range of columns.
-
 -   Category recognition of transactions is planned for the future.
 
-## Issues
-
--   Credit card payments are being counted as spending and the equivalent payment on a credit card statement is being counted as spending. This flaws
-    the calculation of income and essentially double counts one's spendings.
 

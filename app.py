@@ -162,9 +162,21 @@ class MainWindow(QMainWindow):
             if acc2 == "Select Account":
                 acc2 = ""
             
+            if acc1 == "No account added or chosen":
+                amt1 = ""
+            else:
+                amt1 = AnalysisFunctions.getAccountBalance(self, acc1)
+                amt1 = self.formatAmount(amt1) if amt1 != -1 else "N/A"
+
+            if acc2 == "":
+                amt2 = ""
+            else:
+                amt2 = AnalysisFunctions.getAccountBalance(self, acc2)
+                amt2 = self.formatAmount(amt2) if amt2 != -1 else "N/A"
+
             # only update if there is more than just select account -> resolves issue when function is called when program updates combo boxes rather than the user
             if self.ui.comboBox_settings_acc1.count() > 1: 
-                UIFunctions.updateAccountSummary(self, acc1, acc2)
+                UIFunctions.updateAccountSummary(self, acc1, acc2, amt1, amt2)
 
         self.ui.comboBox_settings_acc1.currentTextChanged.connect(dbd_accountsChosen)
         self.ui.comboBox_settings_acc2.currentTextChanged.connect(dbd_accountsChosen)
@@ -270,13 +282,26 @@ class MainWindow(QMainWindow):
         self.updateAnalysisPage()
         
     # Sets up the dashboard page
-    # TODO Once ability to read balances from spreadsheets is completed, update correct balances on the dashboard
     def updateDashboard(self):
         # Set up account summary
         accounts = UIFunctions.getDashBoardAccounts(self)
-        UIFunctions.updateAccountSummary(self, accounts[0], accounts[1])
+
+        if accounts[0] == "No account added or chosen":
+            amt1 = ""
+        else:
+            amt1 = AnalysisFunctions.getAccountBalance(self, accounts[0])
+            amt1 = self.formatAmount(amt1) if amt1 != -1 else "N/A"
+
+        if accounts[1] == "":
+            amt2 = ""
+        else:
+            amt2 = AnalysisFunctions.getAccountBalance(self, accounts[1])
+            amt2 = self.formatAmount(amt2) if amt2 != -1 else "N/A"
+
+        UIFunctions.updateAccountSummary(self, accounts[0], accounts[1], amt1, amt2)
         AnalysisFunctions.updateTotalSpendingAndIncome(self)
 
+    # Updates the widgets in the analysis page
     def updateAnalysisPage(self):
         AnalysisFunctions.updateTabs(self)
         
@@ -391,8 +416,10 @@ class MainWindow(QMainWindow):
             print("Please enter a csv file")
 
         try:
-            newTransactions_df : pd.DataFrame = pd.read_csv(fileName, usecols=lambda column: column not in ["Reference Number", "Address", "Running Bal.", "Running Balance"])
-            newTransactions_df.columns = ["Date", "Merchant", "Amount"] # Rename columns
+            newTransactions_df : pd.DataFrame = pd.read_csv(fileName, usecols=lambda column: column not in ["Reference Number", "Account", "Address", "Category"])
+            if len(newTransactions_df.columns) == 3: # if running balance column doesn't exist, insert it with values -1 at the end of the df
+                newTransactions_df["Running Balance"] = -1.00
+            newTransactions_df.columns = ["Date", "Merchant", "Amount", "Running Balance"] # Rename columns
             
             # Gets currently selected account
             currentAccount = UIFunctions.transactionsPage_getAccount_add(self)
@@ -477,7 +504,7 @@ class MainWindow(QMainWindow):
         df_array = sorted_df.to_numpy() # converts to numpy so easier to iterate
 
         for i, row in enumerate(df_array):
-            for j, value in enumerate(row):
+            for j, value in enumerate(row[:-1]): # don't include last column which is running balance column
                 # create a new row if the 13 default rows have been filled or if was already populated
                 if i == self.ui.transactionsTable.rowCount():
                     self.ui.transactionsTable.insertRow(self.ui.transactionsTable.rowCount())

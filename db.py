@@ -49,7 +49,7 @@ def getTransactions_from_db() -> pd.DataFrame:
     conn = create_connection(DB_FILE)
 
     df : pd.DataFrame = pd.read_sql_query("SELECT * FROM transactions", conn)
-    df.columns = ["Date", "Merchant", "Account", "Category", "Amount"] # Rename columns as necessary
+    df.columns = ["Date", "Merchant", "Account", "Category", "Amount", "Running Balance"] # Rename columns as necessary
     df["Date"] = pd.to_datetime(df["Date"], format="%Y-%m-%d") # convert date column to datetime
     conn.close()
 
@@ -89,9 +89,10 @@ def addTransactions_to_db(new_transactions: pd.DataFrame):
     conn = create_connection(DB_FILE)
     
     current_df : pd.DataFrame = pd.read_sql_query("SELECT * FROM transactions", conn)
-    current_df.columns = ["Date", "Merchant", "Account", "Category", "Amount"]
+    current_df.columns = ["Date", "Merchant", "Account", "Category", "Amount", "Running Balance"]
     current_df["Date"] = pd.to_datetime(current_df["Date"], format="%Y-%m-%d")
     new_transactions = pd.merge(new_transactions, current_df, indicator=True, how="outer").query('_merge=="left_only"').drop('_merge', axis=1)
+    new_transactions.rename(columns={'Running Balance': 'RunningBalance'}, inplace=True) # Rename running balance column to avoid space when storing in database
 
     if not new_transactions.empty:
         new_transactions.to_sql(name="transactions", con=conn, if_exists="append", index=False)
@@ -151,7 +152,8 @@ def main():
         Merchant text NOT NULL,
         Account text,
         Category text,
-        Amount integer NOT NULL
+        Amount integer NOT NULL,
+        RunningBalance integer
     );"""
 
     query_create_accounts_table = """CREATE TABLE IF NOT EXISTS accounts (

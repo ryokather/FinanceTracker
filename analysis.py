@@ -7,16 +7,23 @@ class AnalysisFunctions(MainWindow):
     
     ### DASHBOARD FUNCTIONS ###
 
+    # gets the balance of a specified account
+    def getAccountBalance(self, acc: str) -> float:
+        accountTransactions = self.df.loc[self.df['Account'] == acc]
+        if self.is_df_empty(accountTransactions): return -1
+        accountTransactions = accountTransactions.sort_values(by=['Date'], ascending=True)
+        return accountTransactions['Running Balance'].iloc[-1].astype(float)
+
     # Updates the dashboard's current month spending + income as well as the percentage changed
     def updateTotalSpendingAndIncome(self):
         if self.is_df_empty(self.df): return
 
         currentMonth = datetime.today().month
-        prevMonth = (currentMonth - 1) if currentMonth != 1 else 12
 
         # filter transactions by spending vs income and sum for the month
         df_spendingTransactions = self.df.loc[self.df['Amount'] < 0]
         currMonthTrans = df_spendingTransactions.loc[df_spendingTransactions['Date'].dt.month == currentMonth]
+        currMonthTrans = AnalysisFunctions.filterOutBillPayments(self, currMonthTrans)
         if not self.is_df_empty(currMonthTrans):
             monthSpending = currMonthTrans['Amount'].sum().astype(float)
         else:
@@ -24,6 +31,7 @@ class AnalysisFunctions(MainWindow):
         
         df_incomeTransactions = self.df.loc[self.df['Amount'] > 0]
         currMonthTrans = df_incomeTransactions.loc[df_incomeTransactions['Date'].dt.month == currentMonth]
+        currMonthTrans = AnalysisFunctions.filterOutBillPayments(self, currMonthTrans)
         if not self.is_df_empty(currMonthTrans):
             monthIncome = currMonthTrans['Amount'].sum().astype(float)
         else:
@@ -42,6 +50,7 @@ class AnalysisFunctions(MainWindow):
         prevMonth = (currentMonth - 1) if currentMonth != 1 else 12
 
         prevMonthTrans = df_spending.loc[df_spending['Date'].dt.month == prevMonth]
+        prevMonthTrans = AnalysisFunctions.filterOutBillPayments(self, prevMonthTrans)
 
         # only sum column if not empty
         prevMonthSpending = 0
@@ -93,6 +102,7 @@ class AnalysisFunctions(MainWindow):
         
         # Filter by income and then group together transactions of the same month
         df_incomeTransactions = self.df.loc[self.df['Amount'] > 0]
+        df_incomeTransactions = AnalysisFunctions.filterOutBillPayments(self, df_incomeTransactions)
         incomeGrouped = df_incomeTransactions['Amount'].groupby([(df_incomeTransactions.Date.dt.year.rename('year')),
                 (df_incomeTransactions.Date.dt.month.rename('month'))]).sum().to_frame(name = 'income').reset_index()
 
@@ -144,6 +154,7 @@ class AnalysisFunctions(MainWindow):
         monthNum = AnalysisFunctions.MONTH_TO_NUMBER[month] # Must convert the string to the corresponding number        
         df_incomeTransactions = self.df.loc[self.df['Amount'] > 0]
         df_transInMonth = df_incomeTransactions.loc[df_incomeTransactions['Date'].dt.month == monthNum]
+        df_transInMonth = AnalysisFunctions.filterOutBillPayments(self, df_transInMonth)
         if self.is_df_empty(df_transInMonth):
             return 0
         return df_transInMonth['Amount'].sum().astype(float) 
@@ -154,6 +165,7 @@ class AnalysisFunctions(MainWindow):
             return 0.00
         
         df_incomeTransactions = self.df.loc[self.df['Amount'] > 0]
+        df_incomeTransactions = AnalysisFunctions.filterOutBillPayments(self, df_incomeTransactions)
         incomeGrouped = df_incomeTransactions['Amount'].groupby([(df_incomeTransactions.Date.dt.year.rename('year')),
                 (df_incomeTransactions.Date.dt.month.rename('month'))]).sum().to_frame(name = 'income').reset_index()
         incomeGrouped = AnalysisFunctions.fillMissingMonthsInDF(self, incomeGrouped, numMonths) # fill missing months if necessary
@@ -169,8 +181,9 @@ class AnalysisFunctions(MainWindow):
             toReturn = [x[1:] for x in AnalysisFunctions.generateZeroMonths(self, numMonths)]
             return pd.DataFrame(toReturn[::-1], columns=['date', 'spending'])
         
-        # Filter by spending and then group together transactions of the same month
+        # Filter by spending, filter out payments, and then group together transactions of the same month
         df_spendingTransactions = self.df.loc[self.df['Amount'] < 0]
+        df_spendingTransactions = AnalysisFunctions.filterOutBillPayments(self, df_spendingTransactions)
         spendingGrouped = df_spendingTransactions['Amount'].groupby([(df_spendingTransactions.Date.dt.year.rename('year')),
                 (df_spendingTransactions.Date.dt.month.rename('month'))]).sum().to_frame(name = 'spending').reset_index()
 
@@ -223,6 +236,7 @@ class AnalysisFunctions(MainWindow):
         monthNum = AnalysisFunctions.MONTH_TO_NUMBER[month] # Must convert the string to the corresponding number
         df_spendingTransactions = self.df.loc[self.df['Amount'] < 0]
         df_transInMonth = df_spendingTransactions.loc[df_spendingTransactions['Date'].dt.month == monthNum]
+        df_transInMonth = AnalysisFunctions.filterOutBillPayments(self, df_transInMonth)
         if self.is_df_empty(df_transInMonth):
             return 0
         return abs(df_transInMonth['Amount'].sum().astype(float)) 
@@ -233,6 +247,7 @@ class AnalysisFunctions(MainWindow):
             return 0.00
             
         df_spendingTransactions = self.df.loc[self.df['Amount'] < 0]
+        df_spendingTransactions = AnalysisFunctions.filterOutBillPayments(self, df_spendingTransactions)
         spendingGrouped = df_spendingTransactions['Amount'].groupby([(df_spendingTransactions.Date.dt.year.rename('year')),
                 (df_spendingTransactions.Date.dt.month.rename('month'))]).sum().to_frame(name = 'spending').reset_index()
         spendingGrouped = AnalysisFunctions.fillMissingMonthsInDF(self, spendingGrouped, numMonths) # fill missing months if necessary
@@ -241,12 +256,18 @@ class AnalysisFunctions(MainWindow):
     
     ### HELPER FUNCTIONS ###
 
+    # Function that filters out bill payments from a dataframe of transactions
+    # NOTE If a transactions has the word "payment" in it, it will get filtered out --> have not seen any transactions with "payment" in it
+    def filterOutBillPayments(self, toFilter: pd.DataFrame):
+        if self.is_df_empty(toFilter): return toFilter
+        return toFilter[~toFilter['Merchant'].str.contains("payment", case=False)]
+
     # Helper functions to fill in missing data. For example, if in may and june there was no income/spending, we would want to explicitly
     # note this as $0 because the original dataframe would not even have those rows 
     def generateZeroMonths(self, numMonths: int) -> list:
         month, year = datetime.today().month, datetime.today().year
         missingRows = []
-        for x in range(numMonths):
+        for _ in range(numMonths):
             missingRows.append([year, month, 0])
             month -= 1
             if month == 0:

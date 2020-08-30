@@ -103,17 +103,7 @@ class UIFunctions(MainWindow):
     
     # UI function that updates the amount summary widget on the dashboard
     # TODO determine amounts of each account
-    def updateAccountSummary(self, acc1: str, acc2: str):
-        if acc1 == "No account added or chosen":
-            amt1 = ""
-        else:
-            amt1 = "$0.00"
-        
-        if acc2 == "":
-            amt2 = ""
-        else:
-            amt2 = "$0.00" 
-
+    def updateAccountSummary(self, acc1: str, acc2: str, amt1: str, amt2: str):
         self.ui.label_dbd_firstAccount.setText(acc1)
         self.ui.label_dbd_secondAccount.setText(acc2)
         self.ui.label_dbd_firstAcctAmt.setText(amt1)
